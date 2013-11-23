@@ -18,6 +18,7 @@ main()
     step = 20; //step size for temp values
 
     fahr = lower;
+    printf("Fahr \t Celsius \n"); //column titles for the table
     while (fahr <= upper) {
         celsius = (5.0/9.0) * (fahr-32.0); //we're using integers so we can't just multiply by 5/9 (beware truncation)
         /*if the arithmetic involves any floating point things, then the other things will be converted to floats 
