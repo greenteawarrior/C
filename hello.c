@@ -1,3 +1,6 @@
+//C Programming Language 1.1, Getting Started
+//11/22/2013, Emily Wang
+
 #include <stdio.h>
 
 main()
