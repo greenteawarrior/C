@@ -1,4 +1,6 @@
-/*C Programming Language 1.5.4: Word Counting
+/*C Programming Language 1.5.4: 
+Character Input and Output
+Word Counting
 11/23/2013, Emily Wang*/
 
 #include <stdio.h>
@@ -14,17 +16,17 @@ main()
     state = OUT;
     nl = nw = nc = 0;
     while ((c = getchar()) != EOF) { // the || operator means OR
-        ++=nc;
+        ++nc;
         if (c == '\n')
             ++nl;
-        if (c == ' ' || c == '\n' || c = '\t')
+        if (c == ' ' || c == '\n' || c == '\t')
             state = OUT;
         else if (state == OUT) {
             state = IN;
             ++nw;
         }
     }
-    printf("%d %d %d\n", nl, nw, nc)
+    printf("%d %d %d\n", nl, nw, nc);
 }
 
 /*
