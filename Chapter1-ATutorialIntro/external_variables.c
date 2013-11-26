@@ -1,5 +1,5 @@
 /*C Programming Language 1.10: External Variables and Scope
-11/24/2013, Emily Wang*/
+11/25/2013, Emily Wang*/
 
 /*
 same program as the character_arrays.c script, 

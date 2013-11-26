@@ -1,5 +1,5 @@
 /*C Programming Language 1.9: Character Arrays
-11/24/2013, Emily Wang*/
+11/25/2013, Emily Wang*/
 
 //this program will read a set of text lines and print the longest line
 //uses automatic variables (aka local variables, automatic is the official term for this book)
