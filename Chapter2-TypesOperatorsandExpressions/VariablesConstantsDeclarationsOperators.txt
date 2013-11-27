@@ -278,3 +278,45 @@ root2 = sqrt(2)
 converts the integer2 into the double 2.0 automatically w/o a need for a cast within the call line
 
 see PseudoRandomNumber.c for a typecasting example
+see htoi.c (exercise 2-3)
+
+***2.8 Increment and Decrement Operators
+++ and -- can be used as either prefix or suffix. interesting!
+
+according to
+http://ggia-programming-notes.blogspot.com/2007/11/c-difference-between-prefix-and-suffix.html
+
+prefix: the variable is first incremented and later assigned
+i1 = 10;
+i2 = ++ i1;
+
+is the same as
+i1 = 10;
+i1 = i1 + 1;
+i2 = i1; //both i1 and i2 will be 11!
+think increment, and then assignment
+
+suffix:
+i1 = 10;
+i2 = i1 ++;
+
+is the same as
+
+i1 = 10;
+i2 = i1;
+i1 = i1 + 1; //the value of i1 will be 11, the value of i2 will be 10!
+think assignment, and then increment
+
+/end link info.
+
+++ and -- can only work with variables
+e.g., (i+j)++ is illegal
+
+
+when you don't care about the value (and only care about incrementing something), 
+ex. 
+if (c == '\n')
+  nl++;
+then either prefix or suffix ++ will work
+
+see the squeeze.c script for the subtle prefix vs suffix concept in use!

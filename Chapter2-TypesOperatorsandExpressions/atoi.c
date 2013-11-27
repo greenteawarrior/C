@@ -1,7 +1,7 @@
 /*
 C Programming Language 2.7:
 Type Conversions
-11/25/2013, Emily Wang
+11/26/2013, Emily Wang
 */
 
 //takes in a string of numbers and prints out the integer equivalent

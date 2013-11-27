@@ -2,7 +2,7 @@
 C Programming Language 2.7:
 Type Conversions
 Exercise 2-3
-11/25/2013, Emily Wang
+11/26/2013, Emily Wang
 */
 
 //converts a string of hexadecimal digits to its equivalent integer value
