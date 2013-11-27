@@ -9,7 +9,7 @@ Type Conversions
 #include <stdio.h>
 
 //declare it!
-char numberstr[] = "123456"; //numberstr of interest
+char numberstr[] = "216"; //numberstr of interest
 int atoi(char numberstr[]); //our helper function
 
 main()
@@ -25,6 +25,6 @@ int atoi(char numberstr[])
 
     n = 0;
     for (i = 0; numberstr[i] >= '0' && numberstr[i] <= '9'; ++i)
-        n = 10 * n + (numberstr[i] - '0');
+        n = 10 * n + (numberstr[i] - '0'); //factor of ten for each digit (since we're in decimal)
     return n;
 }

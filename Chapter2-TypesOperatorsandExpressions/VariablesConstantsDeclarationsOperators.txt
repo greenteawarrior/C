@@ -1,5 +1,5 @@
 C Programming Language 
-11/25/2013, Emily Wang
+11/25-26/2013, Emily Wang
 Notes on Chapter 2 - Types, Operators, and Expressions
 Variables, Constants, Declarations, Operators
 
@@ -229,3 +229,52 @@ if (!valid) is the same as if(valid==0)
 
 ***2.7 Type Conversions
 
+see the atoi.c and lowercase.c scripts
+//varies on machine architecture: are char variables signed or unsigned integers?? (sometimes sign extension happens, sometimes it doesn't)
+//for best portability, specify signed or unsigned if there's non-character data in char variables
+
+in the test part of i, while, for, etc... "true" just means non-zero. 
+&& and || will return either 1 or 0
+the library functions (ex. isdigit) will return either non-zero value or zero
+
+rules for arithmetic things:
+book excerpt:
+*If there are no unsigned operands, however, the following
+informal set of rules will suffice:
+*If either operand is long double, convert the other to long double.
+*Otherwise, if either operand is double, convert the other to double.
+*Otherwise, if either operand is float, convert the other to float.
+*Otherwise, convert char and short to int.
+*Then, if either operand is long, convert the other to long.
+end book excerpt.
+
+conversions get complicated when you hav eunsigned operands...
+
+conversions take place across assignments; the value of the RHS is converted to the LHS type, which is the type of the result
+
+longer integers are converted to shorter ones or to chars by dropping excess high-order bits
+
+float to int: truncates fractional parts
+double to float: depends on the machine; it'll either be rounded or truncated
+
+type conversion also happens when arguments are passed to functions
+
+typecasting! 
+(type name) expression
+
+example: sqrt function in <math.h> requires a double argument
+sqrt((double)n)
+
+typecasting produces the value of of n in the proper type; n itself is not altered
+
+if arguments are declared by function prototype (i.e. they should be), the declaration causes automatic coercion of any arguments when the func is called
+
+so... for sqrt, this should be in the script:
+double sqrt(double)
+
+so the call 
+root2 = sqrt(2)
+
+converts the integer2 into the double 2.0 automatically w/o a need for a cast within the call line
+
+see PseudoRandomNumber.c for a typecasting example
