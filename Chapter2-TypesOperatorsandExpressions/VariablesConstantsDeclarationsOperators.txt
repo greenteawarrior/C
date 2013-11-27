@@ -1,0 +1,231 @@
+C Programming Language 
+11/25/2013, Emily Wang
+Notes on Chapter 2 - Types, Operators, and Expressions
+Variables, Constants, Declarations, Operators
+
+
+***2.1 Variable Names
+Names are made of variables and digits
+First character must be a letter (underscore counts)
+However, don't start your variables with underscore - usually libraries do this
+Case sensitive
+Typical convention: lowercase for variable names, uppercase for symbolic constants
+
+Cannot use keywords (if, else, int, float, etc)
+
+Short names for local variables
+Longer names for external veriables
+
+
+***2.2 Data Types and Sizes
+char
+    signed (ex. 2's complement)
+    unsigned
+
+int
+    short
+    long
+
+    signed 
+    unsigned
+
+float
+
+double
+    long double
+
+
+***2.3 Constants
+~integer things
+int 1234
+long 123456789l (with the terminal l or L)
+unsigned consant 1234u (terminal u or U)
+unsigned long 1234ul(suffix ul or UL)
+
+~float things
+floating point double 123.4 (with a decimal point)
+floating point double 1e-2 (exponent)
+float constant with f or F sufffix
+
+~integers can be in octal or hex instead of decimal too
+decimal: 31
+octal (leading zero) 037
+hexadecimal (leading 0x or 0X) 0x1f or 0x1F
+    these octal/hexademical constants can also be suffixed by L (makes them long) or U (makes them unsigned)
+unsigned long constant 0XFUL (d15 value)
+
+~characters
+an integer, written as one character within single quotes
+'x'
+value of character constant is th enumeric value of the char in the machine's char set
+
+example: '0' in ASCII character set has the value 48
+irrelevant to the numeric value zero
+
+sometimes there are escape things
+we promise that these are still only one character
+ex. '\n'
+arbitrary byte-sized bit pattern '\ooo' is one or three octal digits (0...7)
+
+!!complete list of escaped things
+\a alert (bell) character 
+\\ backslash
+\b backspace 
+\? question mark
+\f formfeed 
+\' single quote
+\n newline 
+\" double quote
+\r carriage return 
+\ooo octal number
+\t horizontal tab 
+\xhh hexadecimal number
+\v vertical tab
+
+'\0' is the null character, represents the character w/ value zero
+
+~constant expressions
+evaluated at compilation rather than run-time
+can be used any place a constant can be used
+ex.
+#define MAXLINE 1000
+char line[MAXLINE+1]
+
+~string constant aka string literal
+sequence of zero or more characters surrounded by double quotes
+ex. "I am a string"
+ex. "" //the empty string
+Quotes just delimit the string (aren't actually a part of it)
+Same escape rules
+Can be concatenated at compile time
+ex. "hello, " "world" is the same as "hello, world"
+can be used to split up long strings across several source lines
+
+it's an array of characters with '\0' at the end
+
+BEWARE: THESE ARE NOT THE SAME:
+'x' an integer, produces the numeric value of the letter x in the machine's char set
+"x" is an array of characters with one character (the letter x) and the null '\0'
+
+~enumeration constant
+a list of constant integer values
+
+example: enum boolean {NO, YES};
+
+by default, the first name in an enum has value 0, then 1, ... n
+unless explicit values are specified
+
+example: when it's completely specified:
+enum escapes { BELL = '\a', BACKSPACE = '\b', TAB = '\t',
+               NEWLINE = '\n', VTAB = '\v', RETURN = '\r' };
+
+
+if not all values are specified, unspecified values continue the progression from the last specified values
+
+example:
+enum months { JAN = 1, FEB, MAR, APR, MAY, JUN,
+              JUL, AUG, SEP, OCT, NOV, DEC };
+              /* FEB = 2, MAR = 3, etc. */
+
+
+enumerations vs symbolic constants w/ #define : 
+enumerations are more convenient b/c the values will be generated for you??
+some other info here:
+http://stackoverflow.com/questions/3699760/compare-symbolic-constant-enumeration-constant-variable
+
+
+***2.4 Declarations
+int lower, uppper, step;
+char c, line[1000];
+
+same as
+int lower;
+int upper;
+int step;
+char ;
+char line[1000];
+
+^this style takes more space but gives you room to comment each line
+
+variables can also be initialized when declared
+char esc = '\\';
+int i=0;
+int limit=MAXLINE+1;
+float eps=1.0e-5;
+
+if the var isn't automatic, the initialization is done only once
+(conceptuionally before the program starts to execute)
+
+an explicitly initialized automatic variable is initialized evry time the related function or block is entered
+external and static variables are initialized to zero by default
+automatic variables w/o an explicit initializer have undefined/garbage values
+
+const can be applied to any variable declaration to specify that it won't be changed
+ex. const double e=2.71828;
+ex. const char msg[] = "warning: ";
+
+const can also be used with array arguments, to indicate the function doesn't change the array
+int strlen(const char[]);
+
+
+***2.5 Arithmetic Operators
+
++
+-
+*
+/
+%
+
+integer division truncates any fractional part
+% cannot be used with a float or double
++ and - have the same precedence
+* and / and % have higher precendence than +-
+arithmetic operators associate left to right
+
+
+***2.6 Relational and Logical Operators
+
+relational operators have the same precedence:
+>
+>=
+<
+<=
+relational operators have lower precedence than arithmetic operators
+ex. i < lim-1 is the same as i < (lim-1)
+
+equality operators have lower precedence than the relational ones:
+==
+!=
+
+logical operators
+&&
+||
+evaluated left to right
+evaluation stops as soon as the truth or falsehood of the result is known
+
+be smart about the order of your tests...
+book excerpt:
+
+for (i=0; i < lim-1 && (c=getchar()) != '\n' && c != EOF; ++i)
+    s[i] = c;
+
+Before reading a new character it is necessary to check that there is room to store it in the array s, so the
+test i < lim-1 must be made first. Moreover, if this test fails, we must not go on and read another
+character.
+Similarly, it would be unfortunate if c were tested against EOF before getchar is called; therefore the
+call and assignment must occur before the character in c is tested.
+
+end book excerpt. 
+
+&& is higher than ||
+both are lower than relatioal and equality operators
+!= is higher precedence than assigment
+use parens to be clear!!
+
+logical 1 = true, zero=false
+! is a negation operator
+if (!valid) is the same as if(valid==0)
+
+
+***2.7 Type Conversions
+
