@@ -320,3 +320,40 @@ if (c == '\n')
 then either prefix or suffix ++ will work
 
 see the squeeze.c script for the subtle prefix vs suffix concept in use!
+
+***2.9 Bitwise Operators
+can only work with integral operands (char, short, int, long) , signed or unsigned
+
+
+&  bitwise AND
+|  bitwise inclusive OR
+^  bitwise exclusive OR
+<< left shift
+>> right shift
+~  one's complement (unary)
+
+*the bitwise AND & can mask off some set of bits
+
+ex. n = n & 0177;
+0177 is in octal
+in binary, 0177 = 0000000001111111
+this means everything in N except for the last 7 bits are "masked" (b/c AND gates)
+
+*the bitwise OR operator | can turn bits on
+
+*the bitwise exclusive or (XOR) ^ operator sets 1 where the operands have different bits, and zero where they're the same
+
+do not confuse bitwise & and | for && and ||!
+
+shift operators << and >> perform left and right shifts of their LHS operand by the number of bit positions given by the RHS operand (must be non-negative), which must be non-negative
+
+x << 2 shifts the value of x by two positions, filling vacated bits with zeros
+this is the same as multiplication by 4
+
+right shifting an unsigned quantity always fits the vacated bits with zero
+right shifting a signed quantity will fill with bit signs (arithmetic shift) on some machines and with 0 bits (logical shift) on others
+
+unary operator ~ is the one's complement (i.e. NOT gate)
+~077 is a portable form; it's a constant expression that can be evaluated at compile time and is independent of word length
+
+to be continued..."As an illustration..." look at the getbits example
