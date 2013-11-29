@@ -1,0 +1,77 @@
+C Programming Language 
+11/28/2013, Emily Wang
+Notes on Chapter 2 - Control Flow
+
+***3.1 Statements and Blocks
+
+semicolons are the statement terminator
+examples
+x = 0;
+i++;
+printf(...);
+
+braces {} will group declarations and statements together in 
+a compound statement 
+(ex. the {} for an if statement chunk of code)
+no semicolon after the } that ends a block
+
+
+***3.2 If-Else
+
+if (expression)
+    statement1
+else
+    statement2
+
+the else part is optional
+the expression is evaluated
+if expr is true (non zero value), statement1 is executed
+if expr is false (zero), and there is an else, statement2 is executed
+if expr is false and there isn't an else, nothing happens and 
+then we move on to the rest of the code
+
+some shortcuts:
+if expression   is the same as   if (expression!=0)
+
+//just try your best to be clear with your code
+
+when you have nested if-else statements, it's ambiguous when
+you remove the else... *potential bugs waiting to happen*
+one way to resolve this issue is associated the else
+with the most recently closed else-less if
+
+so, use curlybraces!
+
+
+***3.3 Else-If
+
+if (expression)
+    statement
+else if (expresion)
+    statement
+else if (expresion)
+    statement
+else if (expresion)
+    statement
+else
+    statement
+
+"A multi-way decision"
+The expressions are evaluted in order
+If an expression is true, the corresponding statement is executed, and then
+this terminates the entire if-statement chain.
+
+The code for each statement is a single statement or a
+group in braces
+
+Again, the else is optional - but it's good for catching
+errors (the conceptually "impossible" condition 
+might actually occur in real-life b/c of subtle bugs)
+
+remember, else doesn't have an expression, but else if does b/c it's
+specific...
+
+
+**3.4 Switch
+
+

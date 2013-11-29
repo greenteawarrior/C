@@ -1,5 +1,5 @@
 C Programming Language 
-11/25-26/2013, Emily Wang
+11/25-28/2013, Emily Wang
 Notes on Chapter 2 - Types, Operators, and Expressions
 Variables, Constants, Declarations, Operators
 
@@ -502,4 +502,4 @@ compilers can interpret this in different ways...based on machine architecture
 -moral: writing code that depends on order of evaluation is a bad programming practice in any language
 -it's necessary to know what things to avoid, but if you don't know how they're done (i.e. comparch), you won't be able to take advantage of a machine's behavior, so stay safe!
 
-/end chapter 2. WOOT!
+/end chapter 2 for now. WOOT!

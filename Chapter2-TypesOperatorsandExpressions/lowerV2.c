@@ -17,7 +17,7 @@ main()
 }
 
 
-//rewritten lower, the function which converts upper case letters to lower case,
+//rewrote lower, the function which converts upper case letters to lower case,
 //with a conditional expression rather than an if-else
 //lower: convert c to lower case (ASCII only)
 char lower(char c)
@@ -25,7 +25,11 @@ char lower(char c)
     return c >= 'A' && c <= 'Z' ? c + 'a' - 'A' : c;
 }
 
+
+
 /*
+//detailing the process
+
 when c >= 'A' && c <= 'Z' 
 is true, then c is an uppercase letter.
 
