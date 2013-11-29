@@ -47,11 +47,11 @@ so, use curlybraces!
 
 if (expression)
     statement
-else if (expresion)
+else if (expression)
     statement
-else if (expresion)
+else if (expression)
     statement
-else if (expresion)
+else if (expression)
     statement
 else
     statement
@@ -74,4 +74,28 @@ specific...
 
 **3.4 Switch
 
+"A multi-way decision that tests whether an expression matches 
+one of a number of constant integer values, and
+branches accordingly"
 
+switch (expression) {
+    case const-expr: statements
+    case const-expr: statements
+    default: statements
+}
+
+all case expressions must be different
+the default case is optional (if it's not there and none of the cases match, then nothing happens) and executed if no other cases are satisfied 
+    -good practice: put a break at the end of the last case
+cases and default clause can occur in any order
+
+break causes and immediate exit from switch
+cases are just labels : after the code for one case is done, then the execution
+falls through tot he next unless you take explicity action to escape
+break and return are common ways to leave a switch
+
+you can have several cases be attached to a single action
+
+
+for switch vs. if dilemma: switches are more efficient b/c 
+the machine creates a hash table for the different cases?
