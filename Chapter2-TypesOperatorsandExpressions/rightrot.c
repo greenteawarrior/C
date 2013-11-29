@@ -48,4 +48,3 @@ int wordlength(void)
         ;
     return i;
 }
-

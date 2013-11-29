@@ -356,4 +356,150 @@ right shifting a signed quantity will fill with bit signs (arithmetic shift) on 
 unary operator ~ is the one's complement (i.e. NOT gate)
 ~077 is a portable form; it's a constant expression that can be evaluated at compile time and is independent of word length
 
-to be continued..."As an illustration..." look at the getbits example
+see the exercises for some fun tripy bitwise things
+setbits.c
+invert.c
+rightrot.c
+
+***2.10 Assignment Operators and Expressions
+i = i + 2 is equivalent to i +=2
+
+Corresponding assignment operators exist for most binary operators (think + - * / % << >> & ^ |)
+
+To generalize, if expr1 and expr2 are expressions,
+then expr1 op= expr2 
+is equivalent to
+expr1 = (expr1) op (expr2)
+and expr1 is computed only once.
+
+Be careful about order of operators
+Example: x *= y + 1 is x = x * (y+1) 
+                NOT x = x* y + 1
+
+assignment operators are more user friendly :D
+
+assignment statement can happen in expressions
+example from a while ago: while ((c = getchar()) != EOF)
+
+you can also do += and -= and etc in expressions (although this is less commonly seen)
+
+the type of an assignment expression is the type of its left operand, and the value is the value after the assignment
+
+2-9 this is because you're always adding one (b/c x-1 + 1 = x) to the LSB when you take the two's complement, and thus you'll always be ANDing 0 & 1 when doing x &= (x-1). 
+
+//bitcount: count 1 bits in x- faster version
+int bitcount(unsigned x)
+{
+  int b;
+  for (b = 0; x != 0; x &= x-1)
+    ++b;
+  return b;
+}
+
+//bitcount: the first version (slower)
+int bitcount(unsigned x)
+{
+  int b;
+
+  for (b = 0; x != 0; x >>= 1)
+    if (x & 01)
+      b++;
+    return b;
+}
+
+***2.11 Conditional Expressions
+
+woot woot ternary operator "?:"
+
+the CONDITIONAL EXPRESSION
+expr1 ? expr2 : expr3
+
+how does this work? well, glad you asked!
+~expr1 is evaluated first
+
+~if expr1 is non-zero (true), then expr2 is evaluated, and that's the value of the conditional express.
+
+~if expr2 is false, then expr3 is evaluated, and
+that's the value of the conditional express.
+
+example with finding the max of two numbers a and b
+
+if (a > b)
+  z = a;
+else
+  z = b;
+
+is the same as
+z = (a > b) ?a : b; //z = max(a,b)
+
+conditional expressions can be used wherever any other expression can be
+
+if expr2 and expr3 are of different types, then the conversion rules apply
+
+example, if f is a float and n and int:
+
+(n > 0) f : n
+is of type float regardless of wether n is positive or not
+
+parens are not necessary around the first expression b/c ?: precedence is very low (just above assignment)
+but the parens are helpful for readability!!
+
+wow. conditional expressions make code very compact.
+this loop prints n elements of an array, 10 per line, with each column separated by one plank, and with each line terminated by a newline.
+
+for (i = 0; i < n; i++)
+  printf("%6d%c", a[i], (i&10==9 || i==n-1) ? '\n' : ' ');
+
+definitely more compact than the equivalent if-else statement
+
+another cool example:
+printf("You have %d item%s.\n", n, n==1 ? "":"s");
+
+***2.12 Precedence and Order of Evaluation
+spiffy table 2.1!
+
+it's listed in descending precedence
+btw () is function call
+unary & + - and * have higher precedence than the binary forms
+
+
+Operators                     Associativity
+() [] -> .                    //left to right
+! ~ ++ -- + - * (type)sizeof  //right to left
+* / %                         //left to right
++ -                           //left to right
+<< >>                         //left to right
+< <= > >=                     //left to right
+== !=                         //left to right
+&                             //left to right
+^                             //left to right 
+|                             //left to right  
+&&                            //left to right  
+||                            //left to right
+?:                            //right to left
+= += -= *= /= %= &= ^= |= <<= >>= //right to left
+,                             //left to right
+
+
+what. apparently * is indirection through a pointer
+and & is address of an object
+
+-PARENTHESES ARE YOUR FRIEND
+example: if ((x & MASK) == 0) ...
+
+-C does not specify the order in which operands of an operator are evaluated (exceptions: &&, ||, ?:, ,)
+
+-order in which function arguments are evaluated is not specified
+
+-you can use intermediate steps to be safe
+
+-be careful for "side effects" from function calls, nested assignment statements, increment and decrement operators...
+
+this statement is unhappy: a[i] = i++;
+is the subscript the old value or i or the new one??
+compilers can interpret this in different ways...based on machine architecture
+
+-moral: writing code that depends on order of evaluation is a bad programming practice in any language
+-it's necessary to know what things to avoid, but if you don't know how they're done (i.e. comparch), you won't be able to take advantage of a machine's behavior, so stay safe!
+
+/end chapter 2. WOOT!
