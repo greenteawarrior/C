@@ -72,7 +72,7 @@ remember, else doesn't have an expression, but else if does b/c it's
 specific...
 
 
-**3.4 Switch
+***3.4 Switch
 
 "A multi-way decision that tests whether an expression matches 
 one of a number of constant integer values, and
@@ -96,6 +96,71 @@ break and return are common ways to leave a switch
 
 you can have several cases be attached to a single action
 
-
 for switch vs. if dilemma: switches are more efficient b/c 
 the machine creates a hash table for the different cases?
+
+
+***3.5 Loops - While and For
+
+while (expression)
+    statement
+
+the expression is evaluated
+if non zero, statement is executed
+expression is re-evaluated
+the cycle continues until expression becomes zero
+and then execution resumes after the statement
+
+
+for (expr1; expr2; expr3)
+    statement
+
+is equivalent to (but for loops are more efficient b/c you don't
+have to check the expression every single time... how does
+this mechanism in C work on a lower level??)
+
+expr1;
+while (expr2) {
+    statement
+    expr3;
+}
+
+except for the continue keyword (see 3.7)
+
+usually,
+expr1 and expr3 are assignments or function calls
+expr2 is a relational expression
+
+any of the three parts can be omitted, but you must keep the semicolons
+if expr1 or expr3 is taken out, then it's just dropped from the expansion
+HOWEVER omitting expr will produce an infinite loop....
+
+While vs For?
+
+depends on the situation / personal preference!
+
+while ((c = getchar()) == ' ' || c == '\n' || c = '\t')
+    ;/* skip white space characters */
+//there's no initialization or re-initialization, so a while loop
+//is the natural choice.
+ 
+for (i =0; i < n; i++)
+    ...//processing the first n elements of an array
+//i retains its value after the for loop is done
+// there's a simple initialization and increment, keeps the loop control
+// statements close together and at the top of the loop
+
+you can put any expression you'd like in the progression things in a for loop
+however don't force a lot of unrelated computation into the intialization
+and increment of for loops... because that's what the chunk of code inside 
+the for loop is for... the init/increment things should just be for loop 
+control operations
+
+, The comma operator! 
+evaluated left to right
+type/value of the result are the type/value of the RHS operand
+
+most often used in the for statement
+ex. you can do two indices in parallel
+
+see reverse.c
